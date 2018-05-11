@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
-    get '/all_contacts_url' => 'contacts#all_contact_action'
-    get '/more_contacts_url' => 'contacts#more_contact_action'
+    get '/contacts' => 'contact#index'
+    get '/contact/:id' => 'contact#show'
+    post '/contact' => 'contact#create'
+    patch '/contact/:id' => 'contact#update'
+    delete '/contact/:id' => 'contact#destroy'
   end
-  # STEP 1: A ROUTE triggers a controller action
-  # verb "/urls" => "namespace/controllers#action"
 end
