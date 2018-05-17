@@ -1,35 +1,40 @@
 class Api::ContactsController < ApplicationController
   def index
-    @contact = Contact.all
+    @contacts = Contact.all
     render 'index.json.jbuilder'
   end
 
-  def show
-    contact_id = params[:id]
-    @contact = Contact.find(contact_id)
-    render 'show.json.jbuilder'
-  end
 
   def create
     @contact = Contact.new(
-                            first_name = params[:first_name]
-                            last_name = params[:last_name]
-                            email = params[:email]
-                            phone_number = params[:phone_number]
-
+                            first_name = params[:first_name],
+                            last_name = params[:last_name],
+                            middle_name = params[:middle_name],
+                            email = params[:email],
+                            phone_number = params[:phone_number],
+                            bio: params[:bio]
                           )
     contact.save
     render 'show.json.jbuilder'
   end
 
+  def show
+    contact_id = params[:id]
+    @contacts = Contact.find(contact_id)
+    render 'show.json.jbuilder'
+  end
+
   def update
     contact_id = params[:id]
-    contact - Contact.find(contact_id)
+    contact = Contact.find(contact_id)
 
-    contact.first_name = params[:first_name]
-    contact.last_name = params[:last_name]
-    contact.email = params[:email]
-    contact.phone_number = params[:phone_number]
+    @contact.first_name = params[:first_name],
+    @contact.middle_name = params[:middle_name],
+    @contact.last_name = params[:last_name],
+    @contact.email = params[:email],
+    @contact.phone_number = params[:phone_number],
+    @contact.bio = params[:bio]
+
 
     @contact.save
     render 'show.json.jbuilder'
